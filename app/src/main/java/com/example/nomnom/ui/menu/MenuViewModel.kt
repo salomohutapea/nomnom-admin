@@ -1,14 +1,17 @@
 package com.example.nomnom.ui.menu
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.nomnom.handlers.NetworkHandler
 import com.example.nomnom.models.MenuModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.fragment_menu.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,8 +21,8 @@ class MenuViewModel : ViewModel() {
 
     var data = MutableLiveData<ArrayList<MenuModel>>()
 
-    fun getPredictions(rvMenu: RecyclerView) {
-
+    fun getMenu(rvMenu: RecyclerView, reload: SwipeRefreshLayout) {
+        reload.isRefreshing
         NetworkHandler().getService().getMenu().enqueue(object :
             Callback<List<MenuModel>> {
             override fun onFailure(call: Call<List<MenuModel>>, t: Throwable) {
@@ -34,14 +37,12 @@ class MenuViewModel : ViewModel() {
                 val adapter = GroupAdapter<ViewHolder>()
                 model.body()?.forEach {
                     val dataMenu = it
-                    if (dataMenu != null) {
-                        //TODO: Tambahin if untuk yang sick dan yg gak sick
-                        data.value?.add(dataMenu)
-                        adapter.add(MenuAdapter(dataMenu))
-                        rvMenu.adapter = adapter
-                    }
+                    data.value?.add(dataMenu)
+                    adapter.add(MenuAdapter(dataMenu))
+                    rvMenu.adapter = adapter
                     Log.d("dataMenu", dataMenu.toString())
                 }
+                reload.isRefreshing = false
             }
         })
     }

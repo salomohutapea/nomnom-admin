@@ -27,9 +27,9 @@ class MenuAdapter(val data: MenuModel) : Item<ViewHolder>() {
 
         //TODO: Implement setonclicklistener on edit and delete buttons
 
-        viewHolder.itemView.viewmenu_hapus_button.setOnClickListener {
-        }
-        viewHolder.itemView.viewmenu_ubah_button.setOnClickListener {
-        }
+//        viewHolder.itemView.viewmenu_hapus_button.setOnClickListener {
+//        }
+//        viewHolder.itemView.viewmenu_ubah_button.setOnClickListener {
+//        }
     }
 }

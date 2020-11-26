@@ -11,9 +11,4 @@
         android:icon="@drawable/ic_menu"
         android:title="Daftar Menu" />
 
-    <item
-        android:id="@+id/navigation_riwayat"
-        android:icon="@drawable/ic_riwayat"
-        android:title="Riwayat" />
-
 </menu>

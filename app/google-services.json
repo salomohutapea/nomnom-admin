@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1018000550899",
+    "firebase_url": "https://nomnom-123.firebaseio.com",
+    "project_id": "nomnom-123",
+    "storage_bucket": "nomnom-123.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018000550899:android:ba8eed1e97086911ca0086",
+        "android_client_info": {
+          "package_name": "com.example.nomnom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1018000550899-m0jr3dbjgmfhf2mhlrslcffvn371spfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nomnom",
+            "certificate_hash": "73b743cd5ceeef23db4a3da7f821e202f418c9c1"
+          }
+        },
+        {
+          "client_id": "1018000550899-j2ccqj0fg7jqal9ta5s6b26aaeu859d3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATDSMFas-paP0jJHnlvCDbBacC-6QmUeg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018000550899-j2ccqj0fg7jqal9ta5s6b26aaeu859d3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

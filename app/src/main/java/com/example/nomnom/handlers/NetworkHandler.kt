@@ -1,37 +1,56 @@
 package com.example.nomnom.handlers
 
 
+import android.util.Log
 import com.example.nomnom.models.MenuModel
+import com.example.nomnom.models.NewMenuModel
+import com.example.nomnom.models.OrderModel
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
+import java.util.*
 
-class NetworkHandler {
+class NetworkHandler{
+
+    lateinit var imageUuid: String
+    private var storageRef: StorageReference = FirebaseStorage.getInstance().reference
+    private var firebaseImageLink: String = ""
+
     // set interceptor
     private fun getInterceptor(): OkHttpClient {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
-        val okHttpClient = OkHttpClient.Builder()
+        return OkHttpClient.Builder()
             .addInterceptor(logging)
             .build()
-        return okHttpClient
     }
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://nomnomapi.herokuapp.com/")
+            .baseUrl("https://nomnom-api.azurewebsites.net/")
             .client(getInterceptor())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    fun getService() = getRetrofit().create(ServiceCall::class.java)
+    fun getService(): ServiceCall = getRetrofit().create(ServiceCall::class.java)
+
 }
 
 interface ServiceCall {
     @GET("data/?q=menus")
     fun getMenu(): Call<List<MenuModel>>
+
+    @GET("data/?q=orders")
+    fun getOrder(): Call<List<OrderModel>>
+
+    @POST("/newmenu")
+    fun addMenu(@Body body: NewMenuModel?): Call<String>
 }
