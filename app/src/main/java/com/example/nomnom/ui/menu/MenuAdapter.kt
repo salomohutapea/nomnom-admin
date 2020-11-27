@@ -10,8 +10,6 @@ import kotlinx.android.synthetic.main.view_menu_item.view.*
 
 class MenuAdapter(val data: MenuModel) : Item<ViewHolder>() {
 
-    private var viewModel = MenuViewModel()
-
     override fun getLayout(): Int {
         return R.layout.view_menu_item
     }

@@ -1,7 +1,6 @@
 package com.example.nomnom.handlers
 
 
-import android.util.Log
 import com.example.nomnom.models.MenuModel
 import com.example.nomnom.models.NewMenuModel
 import com.example.nomnom.models.OrderModel
@@ -15,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import java.util.*
+import retrofit2.http.Query
 
 class NetworkHandler{
 
@@ -53,4 +52,7 @@ interface ServiceCall {
 
     @POST("/newmenu")
     fun addMenu(@Body body: NewMenuModel?): Call<String>
+
+    @GET("/pesananselesai")
+    fun finishOrder(@Query("id") id: String): Call<String>
 }

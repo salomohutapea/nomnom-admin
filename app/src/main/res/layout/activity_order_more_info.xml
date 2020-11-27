@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".OrderMoreInfoActivity">
+    tools:context=".activities.OrderMoreInfoActivity">
 
     <ImageView
         android:id="@+id/ordermoreinfo_backbutton"
@@ -28,23 +28,23 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ordermoreinfo_backbutton" />
 
-    <TextView
-        android:id="@+id/ordermoreinfo_titlePesanan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/nunito_bold"
-        android:text="Pesanan :"
-        android:textColor="@color/gray"
-        android:textSize="15dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ordermoreinfo_titleNoMeja" />
+<!--    <TextView-->
+<!--        android:id="@+id/ordermoreinfo_titlePesanan"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:fontFamily="@font/nunito_bold"-->
+<!--        android:text="Pesanan :"-->
+<!--        android:textColor="@color/gray"-->
+<!--        android:textSize="15dp"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/ordermoreinfo_titleNoMeja" />-->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="140dp">
+        android:layout_marginTop="130dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,6 +88,7 @@
                     app:layout_constraintRight_toRightOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnpesananselesai"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 app:layout_constraintBottom_toBottomOf="parent"

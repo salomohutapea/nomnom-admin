@@ -24,7 +24,7 @@
         android:roundIcon="@mipmap/ic_nomnom_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OrderMoreInfoActivity"></activity>
+        <activity android:name=".activities.OrderMoreInfoActivity" />
         <activity android:name=".activities.TambahMenuActivity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>

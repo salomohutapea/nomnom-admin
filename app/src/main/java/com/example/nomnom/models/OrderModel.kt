@@ -1,6 +1,7 @@
 package com.example.nomnom.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class OrderModel (
     @field:SerializedName("_id")
@@ -11,7 +12,7 @@ data class OrderModel (
 
     @field:SerializedName("noMeja")
     val tableNo: String? = null
-)
+) : Serializable
 
 data class Foods (
     @field:SerializedName("idMenu")
@@ -19,4 +20,4 @@ data class Foods (
 
     @field:SerializedName("quantity")
     val quantity: List<String>? = null
-)
+) : Serializable

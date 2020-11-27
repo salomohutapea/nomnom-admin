@@ -2,7 +2,6 @@ package com.example.nomnom.ui.pesanan
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nomnom.R
+import kotlinx.android.synthetic.main.fragment_pesanan.*
 
 class PesananFragment : Fragment() {
 
@@ -26,6 +26,7 @@ class PesananFragment : Fragment() {
     ): View? {
         pesananViewModel =
             ViewModelProviders.of(this).get(PesananViewModel::class.java)
+
         return inflater.inflate(R.layout.fragment_pesanan, container, false)
     }
 
@@ -38,23 +39,23 @@ class PesananFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        startTestTimer()
+        startApiTimer()
     }
 
     override fun onStop() {
         super.onStop()
-        stopTestTimer()
+        stopApiTimer()
     }
 
-    private fun startTestTimer() {
-        if(timer == null) {
-            timer = object: CountDownTimer(86400000, 2000) {
+    private fun startApiTimer() {
+        if (timer == null) {
+            timer = object : CountDownTimer(86400000, 2000) {
                 override fun onFinish() {
                     Log.d("TICK STATUS", "FINISHED")
                 }
 
                 override fun onTick(p0: Long) {
-                    pesananViewModel.getOrders(rvOrder)
+                    activity?.let { pesananViewModel.getOrders(rvOrder, fragPesanan_nopesanan,it) }
                     Log.d("TICK STATUS", "$p0")
                 }
             }
@@ -62,7 +63,7 @@ class PesananFragment : Fragment() {
         timer?.start()
     }
 
-    private fun stopTestTimer() {
+    private fun stopApiTimer() {
         timer?.cancel()
         timer = null
         Log.d("TICK STATUS", "STOP")
