@@ -14,7 +14,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nomnom.R
 import com.example.nomnom.handlers.NetworkHandler
-import com.example.nomnom.models.MenuModel
 import com.example.nomnom.models.NewMenuModel
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -104,6 +103,8 @@ class TambahMenuActivity : AppCompatActivity() {
                 Callback<String> {
                 override fun onFailure(call: Call<String>, t: Throwable) {
                     Log.d("GSON ERROR", t.toString())
+                    Toast.makeText(this@TambahMenuActivity, "Sukses menambah menu", Toast.LENGTH_LONG).show()
+                    finish()
                 }
 
                 @SuppressLint("SetTextI18n", "SimpleDateFormat")
@@ -111,8 +112,6 @@ class TambahMenuActivity : AppCompatActivity() {
                     call: Call<String>,
                     model: Response<String>
                 ) {
-                    Toast.makeText(this@TambahMenuActivity, "Sukses menambah menu", Toast.LENGTH_LONG).show()
-                    finish()
                 }
             })
         }
