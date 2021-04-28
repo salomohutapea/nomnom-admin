@@ -17,7 +17,6 @@
         app:srcCompat="@drawable/bgimg" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/fragMenu_cardBg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="11dp"

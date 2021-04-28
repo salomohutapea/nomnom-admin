@@ -4,6 +4,7 @@ package com.example.nomnom.handlers
 import com.example.nomnom.models.MenuModel
 import com.example.nomnom.models.NewMenuModel
 import com.example.nomnom.models.OrderModel
+import com.example.nomnom.models.SimpleResponse
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import okhttp3.OkHttpClient
@@ -11,16 +12,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 class NetworkHandler{
-
-    lateinit var imageUuid: String
-    private var storageRef: StorageReference = FirebaseStorage.getInstance().reference
-    private var firebaseImageLink: String = ""
 
     // set interceptor
     private fun getInterceptor(): OkHttpClient {
@@ -33,7 +27,7 @@ class NetworkHandler{
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://nomnom-api.azurewebsites.net/")
+            .baseUrl("http://nomnom.cyou/api/")
             .client(getInterceptor())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -50,9 +44,9 @@ interface ServiceCall {
     @GET("data/?q=orders")
     fun getOrder(): Call<List<OrderModel>>
 
-    @POST("/newmenu")
-    fun addMenu(@Body body: NewMenuModel?): Call<String>
+    @POST("menu")
+    fun addMenu(@Body body: NewMenuModel?): Call<SimpleResponse>
 
-    @GET("/pesananselesai")
-    fun finishOrder(@Query("id") id: String): Call<String>
+    @DELETE("order")
+    fun finishOrder(@Query("id") id: String): Call<SimpleResponse>
 }

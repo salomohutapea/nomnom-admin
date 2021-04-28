@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.nomnom.R
 import com.example.nomnom.handlers.NetworkHandler
 import com.example.nomnom.models.NewMenuModel
+import com.example.nomnom.models.SimpleResponse
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_tambah_menu.*
@@ -100,18 +101,18 @@ class TambahMenuActivity : AppCompatActivity() {
             val networkHandler = NetworkHandler().getService()
 
             networkHandler.addMenu(requestBody).enqueue(object :
-                Callback<String> {
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    Log.d("GSON ERROR", t.toString())
-                    Toast.makeText(this@TambahMenuActivity, "Sukses menambah menu", Toast.LENGTH_LONG).show()
-                    finish()
+                Callback<SimpleResponse> {
+                override fun onFailure(call: Call<SimpleResponse>, t: Throwable) {
+                    Toast.makeText(applicationContext, "Gagal menambah menu $t $call", Toast.LENGTH_SHORT).show()
                 }
 
                 @SuppressLint("SetTextI18n", "SimpleDateFormat")
                 override fun onResponse(
-                    call: Call<String>,
-                    model: Response<String>
+                    call: Call<SimpleResponse>,
+                    res: Response<SimpleResponse>
                 ) {
+                    Toast.makeText(this@TambahMenuActivity, "${res.body()?.message}", Toast.LENGTH_LONG).show()
+                    finish()
                 }
             })
         }

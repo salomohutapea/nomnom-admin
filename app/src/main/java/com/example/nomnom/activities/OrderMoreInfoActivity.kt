@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.example.nomnom.R
 import com.example.nomnom.handlers.NetworkHandler
 import com.example.nomnom.models.MenuModel
 import com.example.nomnom.models.OrderModel
+import com.example.nomnom.models.SimpleResponse
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_order_more_info.*
@@ -68,19 +70,24 @@ class OrderMoreInfoActivity : AppCompatActivity() {
 
         btnpesananselesai.setOnClickListener {
             pesananData.orderId?.let { it1 ->
+                Log.d("MYTAG", it1)
                 NetworkHandler().getService().finishOrder(it1).enqueue(object :
-                    Callback<String> {
-                    override fun onFailure(call: Call<String>, t: Throwable) {
-                        Log.d("GSON ERROR", t.toString())
-                        startActivity(Intent(applicationContext, MainActivity::class.java))
+                    Callback<SimpleResponse> {
+                    override fun onFailure(call: Call<SimpleResponse>, t: Throwable) {
+                        Toast.makeText(applicationContext, "Gagal menyelesaikan pesanan $t $call", Toast.LENGTH_SHORT).show()
                     }
 
                     @SuppressLint("SetTextI18n", "SimpleDateFormat")
                     override fun onResponse(
-                        call: Call<String>,
-                        model: Response<String>
+                        call: Call<SimpleResponse>,
+                        res: Response<SimpleResponse>
                     ) {
-                        startActivity(Intent(applicationContext, MainActivity::class.java))
+                        if (res.code() == 200) {
+                            startActivity(Intent(applicationContext, MainActivity::class.java))
+                            Toast.makeText(applicationContext, "${res.body()?.message}", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(applicationContext, "Gagal menyelesaikan pesanan ${res.code()} ${res.body()}", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 })
             }
