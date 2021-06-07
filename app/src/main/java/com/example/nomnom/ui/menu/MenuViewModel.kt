@@ -1,7 +1,6 @@
 package com.example.nomnom.ui.menu
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,12 +9,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.nomnom.handlers.NetworkHandler
 import com.example.nomnom.models.MenuModel
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_menu.*
+import com.xwray.groupie.GroupieViewHolder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.collections.ArrayList
+import java.util.*
 
 class MenuViewModel : ViewModel() {
 
@@ -34,7 +32,7 @@ class MenuViewModel : ViewModel() {
                 call: Call<List<MenuModel>>,
                 model: Response<List<MenuModel>>
             ) {
-                val adapter = GroupAdapter<ViewHolder>()
+                val adapter = GroupAdapter<GroupieViewHolder>()
                 model.body()?.forEach {
                     val dataMenu = it
                     data.value?.add(dataMenu)

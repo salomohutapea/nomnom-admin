@@ -7,14 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nomnom.R
 import kotlinx.android.synthetic.main.fragment_pesanan.*
+import okhttp3.WebSocket
 
 class PesananFragment : Fragment() {
 
+    companion object {
+        const val SERVER_PATH = ""
+    }
+
+    private var name = ""
+    private lateinit var webSocket: WebSocket
     private lateinit var pesananViewModel: PesananViewModel
     private lateinit var rvOrder: RecyclerView
     private var timer: CountDownTimer? = null
@@ -25,7 +32,7 @@ class PesananFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         pesananViewModel =
-            ViewModelProviders.of(this).get(PesananViewModel::class.java)
+            ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(PesananViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_pesanan, container, false)
     }
@@ -33,7 +40,7 @@ class PesananFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rvOrder = view.findViewById<RecyclerView>(R.id.fragPesanan_recyclerview)
+        rvOrder = view.findViewById(R.id.fragPesanan_recyclerview)
         rvOrder.layoutManager = LinearLayoutManager(context)
     }
 
@@ -55,7 +62,7 @@ class PesananFragment : Fragment() {
                 }
 
                 override fun onTick(p0: Long) {
-                    activity?.let { pesananViewModel.getOrders(rvOrder, fragPesanan_nopesanan,it) }
+                    activity?.let { pesananViewModel.getOrders(rvOrder, fragPesanan_nopesanan) }
                     Log.d("TICK STATUS", "$p0")
                 }
             }

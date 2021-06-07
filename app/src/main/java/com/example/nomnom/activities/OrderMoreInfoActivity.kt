@@ -14,7 +14,7 @@ import com.example.nomnom.models.MenuModel
 import com.example.nomnom.models.OrderModel
 import com.example.nomnom.models.SimpleResponse
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_order_more_info.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,7 +48,7 @@ class OrderMoreInfoActivity : AppCompatActivity() {
                 call: Call<List<MenuModel>>,
                 model: Response<List<MenuModel>>
             ) {
-                val adapter = GroupAdapter<ViewHolder>()
+                val adapter = GroupAdapter<GroupieViewHolder>()
                 model.body()?.forEachIndexed { i, menuModel ->
                     menus.add(menuModel)
                     if (pesananData.foods?.quantity?.get(i) != "0") {

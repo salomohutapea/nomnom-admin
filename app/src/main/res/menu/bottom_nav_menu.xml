@@ -8,7 +8,22 @@
 
     <item
         android:id="@+id/navigation_menu"
-        android:icon="@drawable/ic_menu"
+        android:icon="@drawable/ic_baseline_fastfood_24"
         android:title="Daftar Menu" />
+
+    <item
+        android:id="@+id/navigation_presensi"
+        android:icon="@drawable/ic_menu"
+        android:title="Presensi" />
+
+    <item
+        android:id="@+id/navigation_pembukuan"
+        android:icon="@drawable/ic_baseline_query_stats_24"
+        android:title="Pembukuan" />
+
+    <item
+        android:id="@+id/navigation_promo"
+        android:icon="@drawable/ic_baseline_money_24"
+        android:title="Promo" />
 
 </menu>

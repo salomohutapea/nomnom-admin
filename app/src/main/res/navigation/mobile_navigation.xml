@@ -16,4 +16,21 @@
         android:label="Daftar Menu"
         tools:layout="@layout/fragment_menu" />
 
+    <fragment
+        android:id="@+id/navigation_presensi"
+        android:name="com.example.nomnom.ui.PresensiFragment"
+        android:label="Presensi"
+        tools:layout="@layout/fragment_presensi" />
+
+    <fragment
+        android:id="@+id/navigation_pembukuan"
+        android:name="com.example.nomnom.ui.PembukuanFragment"
+        android:label="Pembukuan"
+        tools:layout="@layout/fragment_pembukuan" />
+
+    <fragment
+        android:id="@+id/navigation_promo"
+        android:name="com.example.nomnom.ui.PromoFragment"
+        android:label="Promo"
+        tools:layout="@layout/fragment_promo" />
 </navigation>

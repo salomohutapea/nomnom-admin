@@ -4,18 +4,18 @@ import android.annotation.SuppressLint
 import com.example.nomnom.R
 import com.example.nomnom.models.MenuModel
 import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
-import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.view_menu_item.view.*
 
-class MenuAdapter(val data: MenuModel) : Item<ViewHolder>() {
+class MenuAdapter(val data: MenuModel) : Item<GroupieViewHolder>() {
 
     override fun getLayout(): Int {
         return R.layout.view_menu_item
     }
 
     @SuppressLint("SetTextI18n")
-    override fun bind(viewHolder: ViewHolder, position: Int) {
+    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
 
         Picasso.get().load(data.imgUrl).resize(100, 100)
             .centerCrop().into(viewHolder.itemView.viewmenu_imageView)

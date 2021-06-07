@@ -93,7 +93,7 @@ class TambahMenuActivity : AppCompatActivity() {
         val inputHarga = tambahMenu_hargaInput.text.toString()
 
         if (inputHarga == "" || inputInfo == "" || inputNama == "") {
-            Toast.makeText(this, "Harap masukkan semua data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Harap masukkan semua data", Toast.LENGTH_SHORT).show()
             return
         } else {
             val requestBody = NewMenuModel(nama = inputNama, info = inputInfo, harga = inputHarga, imgUrl = imageUrl)
