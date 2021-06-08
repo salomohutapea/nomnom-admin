@@ -45,7 +45,6 @@ class PesananViewModel : ViewModel() {
 
                     model.body()?.forEachIndexed { index, orderModel ->
                         insideData.add(orderModel)
-                        Log.d("dataz", data.value?.get(index).toString())
                         adapter.add(PesananAdapter(orderModel))
                     }
 
